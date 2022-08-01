@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import PeopleList from "./PeopleList";
+import AddPeopleForm from "./AddPeopleForm";
+import React from "react";
 
 function App() {
+  const [people, setPeople] = React.useState([]);
+
+ 
+
+  function addPeople(name) {
+    setPeople([...people, name]);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App-body">
+        <AddPeopleForm add_people={addPeople} />
+        <PeopleList data={people} />
+      </div>
     </div>
   );
 }
