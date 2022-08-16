@@ -6,6 +6,9 @@ export default function AddPeopleForm(props) {
   function handleInputChange(e) {
     setInput(e.target.value);
   }
+
+
+
   function handleSubmit(e) {
     props.add_people(input);
     e.preventDefault();
@@ -21,6 +24,7 @@ export default function AddPeopleForm(props) {
           handleInputChange={input}
           value={input}
           onChange={handleInputChange}
+          
         />
         <input type="submit" />
       </form>
