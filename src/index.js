@@ -3,48 +3,33 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import allReducers from './reducers'
 
 //store -- global state
 
-//action ---> action is a plain object that contains a type property
-const increment = () => {
-  return {
-    type: 'INCREMENT',
-    payload: 'Hello'
-  }
-}
+const store = createStore(
+  allReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-const decrement = () => {
-  return {
-    type: 'DECREMENT',
-    payload: 'Hello'
-  }
-}
 
-//reducer -- reducer is a function that takes the previous state and an action and returns the next state
-const counter = (state = 0, action) => {
-     switch (action.type) {
-        case 'INCREMENT': return state + 2; 
-        break;
-        case 'DECREMENT': return state - 12;
-        break;
-        default: return state;
-     }
 
-}
 //print the state to the console
-const store = createStore(counter);
-store.subscribe(() => console.log(store.getState()));
+// const store = createStore(counter);
+// store.subscribe(() => console.log(store.getState()));
 
-//dispatch   action to reducer
-store.dispatch(increment());
-store.dispatch(decrement());
-store.dispatch(increment());
+// //dispatch   action to reducer
+// store.dispatch(increment());
+// store.dispatch(decrement());
+// store.dispatch(increment());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
+
   </React.StrictMode>
 );
 
